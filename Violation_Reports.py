@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 #import matplotlib as plt
-import seaborn as sns
+#import seaborn as sns
 import streamlit as st
 
 # The Stanford Open Policing ProjectLinks to an external site. is collecting and standardizing data on vehicle and pedestrian stops from law enforcement
