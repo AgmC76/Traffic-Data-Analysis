@@ -3,6 +3,8 @@ import pandas as pd
 #import matplotlib as plt
 #import seaborn as sns
 import streamlit as st
+import path
+import os
 
 # The Stanford Open Policing ProjectLinks to an external site. is collecting and standardizing data on vehicle and pedestrian stops from law enforcement
 # departments across the country. They've collected data from 31 US states. You will use the data from the state of Rhode Island.
@@ -14,11 +16,19 @@ import streamlit as st
 # setting up streamlit page
 st.title('Violation Reports')
 
+police_file = path.Path('police.csv')
+weather_file = path.Path('weather.csv')
+
 # Load police.csv and weather.csv datasets to pandas dataframes, outcomes and weather.
-outcomes = pd.read_csv('police.csv')
-police_shape_og = outcomes.shape
-weather = pd.read_csv('weather.csv')
-weather_shape_og = weather.shape
+try:
+    if police_file.is_file():
+        outcomes = pd.read_csv(police_file)
+        police_shape_og = outcomes.shape
+    if weather_file.is_file():
+        weather = pd.read_csv(weather_file)
+        weather_shape_og = weather.shape
+except FileNotFoundError:
+    print("No dataset found")
 
 
 # Locate missing values
